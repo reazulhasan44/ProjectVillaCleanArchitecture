@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectVilla.Application\ProjectVilla.Application.csproj" />
     <ProjectReference Include="..\ProjectVilla.Infrastructure\ProjectVilla.Infrastructure.csproj" />
   </ItemGroup>
 
