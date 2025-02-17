@@ -10,6 +10,10 @@ namespace ProjectVilla.Application.Services.Implementation
 {
     public class VillaService : IVillaService
     {
+        public VillaService()
+        {
+                
+        }
         public void CreateVilla(Villa villa)
         {
             throw new NotImplementedException();

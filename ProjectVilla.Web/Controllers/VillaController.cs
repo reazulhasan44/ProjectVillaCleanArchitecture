@@ -12,7 +12,8 @@ namespace ProjectVilla.Web.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var villas = _villaService.GetAllVillas();
+            return View(villas);
         }
     }
 }
