@@ -60,5 +60,30 @@ namespace ProjectVilla.Web.Controllers
             }
             return View();
         }
+
+        public IActionResult Delete(int villaId)
+        {
+            var obj = _villaService.GetVillaById(villaId);
+            if (obj == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            return View(obj);
+        }
+        [HttpPost]
+        public IActionResult Delete(Villa obj)
+        {
+            bool deleted = _villaService.DeleteVilla(obj.Id);
+            if (deleted)
+            {
+                TempData["success"] = "The villa has been deleted successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                TempData["error"] = "Failed to delete the villa.";
+            }
+            return View();
+        }
     }
 }

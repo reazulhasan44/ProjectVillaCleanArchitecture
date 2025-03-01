@@ -41,7 +41,31 @@ namespace ProjectVilla.Application.Services.Implementation
 
         public bool DeleteVilla(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Villa? objFromDb = _unitOfWork.Villa.Get(u => u.Id == id);
+                if (objFromDb is not null)
+                {
+                    if (!string.IsNullOrEmpty(objFromDb.ImageUrl))
+                    {
+                        var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, objFromDb.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                    _unitOfWork.Villa.Remove(objFromDb);
+                    _unitOfWork.Save();
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
         }
 
         public IEnumerable<Villa> GetAllVillas()
