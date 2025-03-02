@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IVillaService, VillaService>();
 builder.Services.AddScoped<IVillaNumberService, VillaNumberService>();
+builder.Services.AddScoped<IAmenityService, AmenityService>();
 
 var app = builder.Build();
 
