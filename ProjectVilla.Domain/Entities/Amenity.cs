@@ -13,11 +13,8 @@ namespace ProjectVilla.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
-
         public required string Name { get; set; }
         public string? Description { get; set; }
-
-
         [ForeignKey("Villa")]
         public int VillaId { get; set; }
         [ValidateNever]
