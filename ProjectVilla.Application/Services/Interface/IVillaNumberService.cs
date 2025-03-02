@@ -14,5 +14,6 @@ namespace ProjectVilla.Application.Services.Interface
         void CreateVillaNumber(VillaNumber villa);
         void UpdateVillaNumber(VillaNumber villa);
         bool DeleteVillaNumber(int id);
+        bool CheckVillaNumberExist(int villa_number);
     }
 }

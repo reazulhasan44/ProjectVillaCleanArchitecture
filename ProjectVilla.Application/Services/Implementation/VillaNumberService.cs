@@ -20,6 +20,12 @@ namespace ProjectVilla.Application.Services.Implementation
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        public bool CheckVillaNumberExist(int villa_number)
+        {
+            return _unitOfWork.VillaNumber.Any(u => u.Villa_Number == villa_number);
+        }
+
         public void CreateVillaNumber(VillaNumber villa)
         {
             _unitOfWork.VillaNumber.Add(villa);
