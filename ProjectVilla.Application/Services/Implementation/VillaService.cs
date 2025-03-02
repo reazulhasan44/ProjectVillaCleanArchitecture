@@ -78,6 +78,11 @@ namespace ProjectVilla.Application.Services.Implementation
             return _unitOfWork.Villa.Get(u => u.Id == id, includeProperties: "VillaAmenity");
         }
 
+        public IEnumerable<Villa> GetVillasAvailabilityByDate(int nights, DateOnly checkInDate)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateVilla(Villa villa)
         {
             if (villa.Image != null)
