@@ -22,9 +22,14 @@ namespace ProjectVilla.Web.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            returnUrl ??= Url.Content("~/");
+            LoginVM loginVM = new()
+            {
+                RedirectUrl = returnUrl
+            };
+            return View(loginVM);
         }
 
         public IActionResult Register(string returnUrl = null)
@@ -97,6 +102,32 @@ namespace ProjectVilla.Web.Controllers
             });
 
             return View(registerVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM loginVM)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    if (string.IsNullOrEmpty(loginVM.RedirectUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return LocalRedirect(loginVM.RedirectUrl);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                }
+            }
+            return View(loginVM);
         }
     }
 }
