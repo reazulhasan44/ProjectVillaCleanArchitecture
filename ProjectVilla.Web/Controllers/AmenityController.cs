@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ProjectVilla.Application.Common.Utility;
 using ProjectVilla.Application.Services.Interface;
 using ProjectVilla.Domain.Entities;
 using ProjectVilla.Web.ViewModels;
 
 namespace ProjectVilla.Web.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class AmenityController : Controller
     {
         private readonly IAmenityService _amenityService;
