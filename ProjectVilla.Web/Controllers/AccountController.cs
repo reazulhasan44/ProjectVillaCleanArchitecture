@@ -38,7 +38,7 @@ namespace ProjectVilla.Web.Controllers
 
             RegisterVM registerVM = new() 
             {
-                RoleList = _roleManager.Roles.Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem 
+                RoleList = _roleManager.Roles.Select(x => new SelectListItem 
                 {
                     Text = x.Name,
                     Value = x.Name
