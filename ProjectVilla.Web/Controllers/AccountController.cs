@@ -32,6 +32,12 @@ namespace ProjectVilla.Web.Controllers
             return View(loginVM);
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Register(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
